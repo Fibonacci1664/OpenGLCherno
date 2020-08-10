@@ -33,7 +33,7 @@ int main(void)
     // Print out the version of GL we are using.
     //std::cout << glGetString(GL_VERSION) << '\n';
 
-    // Vertex position for drawing a triangle.
+    // Vertex position for drawing a triangle. 2D.
     float positions[6] = { -0.5f, -0.5f,
                             0.0f, 0.5f,
                             0.5f, -0.5f };
@@ -42,6 +42,11 @@ int main(void)
     glBindBuffer(GL_ARRAY_BUFFER, buffer);                                          // Bind (Select/Change state to) the buffer we just created, remember OpenGL is just a state machine.
     glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);    // Copy the vertex positions in to the buffer.
 
+    // Actually enable the array.
+    glEnableVertexAttribArray(0);
+
+    // Define how many and the type of positions we have 1D, 2D, 3D, 4D, ints, floats etc.
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
